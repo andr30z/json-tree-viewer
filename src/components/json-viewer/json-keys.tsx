@@ -13,7 +13,7 @@ const JsonItem = memo<{
   return (
     <Fragment key={key}>
       <span
-      ref={ref}
+        ref={ref}
         className={`${
           isIndexOfArray ? "text-json-gray" : "text-json-key"
         } font-normal`}
@@ -21,14 +21,14 @@ const JsonItem = memo<{
         tabIndex={1}
       >
         {key}:{" "}
-        {type !== "object" && (
+        {(type !== "object" || value === null) && (
           <span
             title={String(value)}
             className="text-black font-normal"
             dangerouslySetInnerHTML={{
               __html:
                 type === "boolean" || type === "number" || value === null
-                  ? (value as string)
+                  ? String(value)
                   : '"' + value + '"',
             }}
           />
